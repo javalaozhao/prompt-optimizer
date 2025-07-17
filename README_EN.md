@@ -1,24 +1,22 @@
-# Prompt Optimizer 🚀
+# PromptMaster Pro 🚀
 
 <div align="center">
 
 [English](README_EN.md) | [中文](README.md)
 
-[![GitHub stars](https://img.shields.io/github/stars/linshenkx/prompt-optimizer)](https://github.com/linshenkx/prompt-optimizer/stargazers)
-![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/cakkkhboolfnadechdlgdcnjammejlna?style=flat&label=Chrome%20Users&link=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2F%25E6%258F%2590%25E7%25A4%25BA%25E8%25AF%258D%25E4%25BC%2598%25E5%258C%2596%25E5%2599%25A8%2Fcakkkhboolfnadechdlgdcnjammejlna)
-
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Docker Pulls](https://img.shields.io/docker/pulls/linshen/prompt-optimizer)](https://hub.docker.com/r/linshen/prompt-optimizer)
-![GitHub forks](https://img.shields.io/github/forks/linshenkx/prompt-optimizer?style=flat)
-[![Deploy with Vercel](https://img.shields.io/badge/Vercel-indigo?style=flat&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flinshenkx%2Fprompt-optimizer)
+[![Docker Pulls](https://img.shields.io/docker/pulls/promptmaster/promptmaster-pro)](https://hub.docker.com/r/promptmaster/promptmaster-pro)
+[![Deploy with Vercel](https://img.shields.io/badge/Vercel-indigo?style=flat&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
 
-[Live Demo](https://prompt.always200.com) | [Quick Start](#quick-start) | [FAQ](#faq) | [Development Docs](dev.md) | [Vercel Deployment Guide](docs/user/deployment/vercel_en.md) | [Chrome Extension](https://chromewebstore.google.com/detail/prompt-optimizer/cakkkhboolfnadechdlgdcnjammejlna)
+[Live Demo](#) | [Quick Start](#quick-start) | [FAQ](#faq) | [Deployment Guide](docs/user/deployment/vercel_en.md)
 
 </div>
 
+> **Attribution Statement**: This project is a commercial adaptation of the [Prompt Optimizer](https://github.com/linshenkx/prompt-optimizer) open source project, following the MIT license. Thanks to the original author for their contribution!
+
 ## 📖 Project Introduction
 
-Prompt Optimizer is a powerful AI prompt optimization tool that helps you write better AI prompts and improve the quality of AI outputs. It supports four usage methods: web application, desktop application, Chrome extension, and Docker deployment.
+PromptMaster Pro is an AI prompt optimization tool specifically designed for enterprises and professional users, helping you write better AI prompts and improve AI output quality. As a solution focused on web services, it provides simple deployment methods and powerful features, suitable for team collaboration and enterprise-level applications.
 
 ### 🎥 Feature Demonstration
 
@@ -43,75 +41,32 @@ Prompt Optimizer is a powerful AI prompt optimization tool that helps you write 
 - 🔄 **Comparison Testing**: Real-time comparison between original and optimized prompts for intuitive demonstration of optimization effects
 - 🤖 **Multi-model Integration**: Support for mainstream AI models including OpenAI, Gemini, DeepSeek, Zhipu AI, SiliconFlow, etc.
 - 🔒 **Secure Architecture**: Pure client-side processing with direct data interaction with AI service providers, bypassing intermediate servers
-- 📱 **Multi-platform Support**: Available as web application, desktop application, Chrome extension, and Docker deployment
-- 🔐 **Access Control**: Password protection feature for secure deployment
+- 🔐 **Enterprise-grade Access Control**: Password protection enabled by default to secure enterprise deployments
+- 🌐 **Professional Web Service**: Optimized for cloud server deployment, providing stable and reliable web service experience
 
 ## Quick Start
 
-### 1. Use Online Version (Recommended)
+### 1. Docker Deployment (Recommended)
 
-Direct access: [https://prompt.always200.com](https://prompt.always200.com)
-
-This is a pure frontend project with all data stored locally in your browser and never uploaded to any server, making the online version both safe and reliable to use.
-
-### 2. Vercel Deployment
-Method 1: One-click deployment to your own Vercel:
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flinshenkx%2Fprompt-optimizer)
-
-Method 2: Fork the project and import to Vercel (Recommended):
-   - First fork the project to your GitHub account
-   - Then import the project to Vercel
-   - This allows tracking of source project updates for easy syncing of new features and fixes
-- Configure environment variables:
-  - `ACCESS_PASSWORD`: Set access password to enable access restriction
-  - `VITE_OPENAI_API_KEY` etc.: Configure API keys for various AI service providers
-  
-For more detailed deployment steps and important notes, please check:
-- [Vercel Deployment Guide](docs/user/deployment/vercel_en.md)
-
-### 3. Download Desktop Application
-Download the latest version from [GitHub Releases](https://github.com/linshenkx/prompt-optimizer/releases). We provide both **installer** and **archive** formats for each platform.
-
-- **Installer (Recommended)**: Such as `*.exe`, `*.dmg`, `*.AppImage`, etc. **Strongly recommended as it supports automatic updates**.
-- **Archive**: Such as `*.zip`. Extract and use, but cannot auto-update.
-
-**Core Advantages of Desktop Application**:
-- ✅ **No CORS Limitations**: As a native desktop application, it completely eliminates browser Cross-Origin Resource Sharing (CORS) issues. This means you can directly connect to any AI service provider's API, including locally deployed Ollama or commercial APIs with strict security policies, for the most complete and stable functional experience.
-- ✅ **Automatic Updates**: Versions installed through installers (like `.exe`, `.dmg`) can automatically check and update to the latest version.
-- ✅ **Independent Operation**: No browser dependency, providing faster response and better performance.
-
-### 4. Install Chrome Extension
-1. Install from Chrome Web Store (may not be the latest version due to approval delays): [Chrome Web Store](https://chromewebstore.google.com/detail/prompt-optimizer/cakkkhboolfnadechdlgdcnjammejlna)
-2. Click the icon to open the Prompt Optimizer
-
-### 5. Docker Deployment
-<details>
-<summary>Click to view Docker deployment commands</summary>
 ```bash
-# Run container (default configuration)
-docker run -d -p 80:80 --restart unless-stopped --name prompt-optimizer linshen/prompt-optimizer
-
-# Run container (with API key configuration and password protection)
+# Run container (with API key and access password configuration)
 docker run -d -p 80:80 \
   -e VITE_OPENAI_API_KEY=your_key \
   -e ACCESS_USERNAME=your_username \  # Optional, defaults to "admin"
   -e ACCESS_PASSWORD=your_password \  # Set access password
   --restart unless-stopped \
-  --name prompt-optimizer \
-  linshen/prompt-optimizer
-
+  --name promptmaster-pro \
+  promptmaster/promptmaster-pro
 ```
-</details>
 
-### 6. Docker Compose Deployment
-<details>
-<summary>Click to view Docker Compose deployment steps</summary>
+### 2. Docker Compose Deployment
+
 ```bash
 # 1. Clone the repository
-git clone https://github.com/linshenkx/prompt-optimizer.git
-cd prompt-optimizer
+git clone https://github.com/javalaozhao/promptmaster-pro.git
+cd promptmaster-pro
 
-# 2. Optional: Create .env file for API keys and authentication
+# 2. Create .env file for API keys and authentication
 cat > .env << EOF
 # API Key Configuration
 VITE_OPENAI_API_KEY=your_openai_api_key
@@ -131,30 +86,39 @@ docker compose up -d
 # 4. View logs
 docker compose logs -f
 ```
-</details>
 
 You can also directly edit the docker-compose.yml file to customize your configuration:
-<details>
-<summary>Click to view docker-compose.yml example</summary>
 
 ```yaml
 services:
-  prompt-optimizer:
-    # Use Docker Hub image
-    image: linshen/prompt-optimizer:latest
-    container_name: prompt-optimizer
+  promptmaster-pro:
+    image: promptmaster/promptmaster-pro:latest
+    container_name: promptmaster-pro
     restart: unless-stopped
     ports:
       - "8081:80"  # Modify port mapping
     environment:
       - VITE_OPENAI_API_KEY=your_key_here  # Set API key directly in config
+      - ACCESS_PASSWORD=your_password_here  # Set access password
 ```
-</details>
+
+### 3. Vercel Deployment
+
+Method 1: One-click deployment to your own Vercel (convenient but without automatic updates):
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
+
+Method 2: Fork the project and import to Vercel (recommended, but requires manual setup according to deployment docs):
+   - First fork the project to your GitHub account
+   - Then import the project to Vercel
+   - This allows tracking project updates for easy syncing of new features and fixes
+- Configure environment variables:
+  - `ACCESS_PASSWORD`: Set access password to enable access restriction
+  - `VITE_OPENAI_API_KEY` etc.: Configure API keys for various AI service providers
+
+For more detailed deployment steps and important notes, please check:
+- [Vercel Deployment Guide](docs/user/deployment/vercel_en.md)
 
 ## ⚙️ API Key Configuration
-
-<details>
-<summary>Click to view API key configuration methods</summary>
 
 ### Method 1: Via Interface (Recommended)
 1. Click the "⚙️Settings" button in the upper right corner
@@ -172,8 +136,6 @@ In addition to API keys, you can configure advanced LLM parameters for each mode
 - **Gemini**: `{"temperature": 0.8, "maxOutputTokens": 2048, "topP": 0.95}`
 - **DeepSeek**: `{"temperature": 0.5, "top_p": 0.9, "frequency_penalty": 0.1}`
 
-For more detailed information about `llmParams` configuration, please refer to the [LLM Parameters Configuration Guide](docs/developer/llm-params-guide.md).
-
 ### Method 2: Via Environment Variables
 Configure environment variables through the `-e` parameter when deploying with Docker:
 
@@ -188,18 +150,12 @@ Configure environment variables through the `-e` parameter when deploying with D
 -e VITE_CUSTOM_API_MODEL=your_custom_model_name
 ```
 
-</details>
-
 ## Local Development
-For detailed documentation, see [Development Documentation](dev.md)
-
-<details>
-<summary>Click to view local development commands</summary>
 
 ```bash
 # 1. Clone the project
-git clone https://github.com/linshenkx/prompt-optimizer.git
-cd prompt-optimizer
+git clone https://github.com/javalaozhao/promptmaster-pro.git
+cd promptmaster-pro
 
 # 2. Install dependencies
 pnpm install
@@ -207,46 +163,9 @@ pnpm install
 # 3. Start development server
 pnpm dev               # Main development command: build core/ui and run web app
 pnpm dev:web          # Run web app only
-pnpm dev:fresh        # Complete reset and restart development environment
 ```
-</details>
-
-## 🗺️ Roadmap
-
-- [x] Basic feature development
-- [x] Web application release
-- [x] Internationalization support
-- [x] Chrome extension release
-- [x] Support for system prompt optimization and user prompt optimization
-- [x] Desktop application release
-- [ ] MCP service release
-
-For detailed project status, see [Project Status Document](docs/project-status.md)
-
-## 📖 Related Documentation
-
-- [Documentation Index](docs/README.md) - Index of all documentation
-- [Technical Development Guide](docs/developer/technical-development-guide.md) - Technology stack and development specifications
-- [LLM Parameters Configuration Guide](docs/developer/llm-params-guide.md) - Detailed guide for advanced LLM parameter configuration
-- [Project Structure](docs/developer/project-structure.md) - Detailed project structure description
-- [Project Status](docs/project/project-status.md) - Current progress and plans
-- [Product Requirements](docs/project/prd.md) - Product requirements document
-- [Vercel Deployment Guide](docs/user/deployment/vercel_en.md) - Detailed instructions for Vercel deployment
-
-## Star History
-
-<a href="https://star-history.com/#linshenkx/prompt-optimizer&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=linshenkx/prompt-optimizer&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=linshenkx/prompt-optimizer&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=linshenkx/prompt-optimizer&type=Date" />
- </picture>
-</a>
 
 ## FAQ
-
-<details>
-<summary>Click to view frequently asked questions</summary>
 
 ### API Connection Issues
 
@@ -262,8 +181,6 @@ For detailed project status, see [Project Status Document](docs/project-status.m
 **A**: These platforms typically have strict CORS restrictions. Recommended solutions:
 
 1. **Use Vercel Proxy** (Convenient solution)
-   - Use the online version: [prompt.always200.com](https://prompt.always200.com)
-   - Or deploy to your own Vercel platform
    - Check "Use Vercel Proxy" option in model settings
    - Request flow: Browser → Vercel → Model service provider
    - For detailed steps, please refer to the [Vercel Deployment Guide](docs/user/deployment/vercel_en.md)
@@ -273,61 +190,14 @@ For detailed project status, see [Project Status Document](docs/project-status.m
    - Configure as custom API endpoint in settings
    - Request flow: Browser → Proxy service → Model service provider
 
-#### Q4: What are the drawbacks or risks of using Vercel proxy?
-**A**: Using Vercel proxy may trigger risk control mechanisms of some model service providers. Some vendors may identify requests from Vercel as proxy behavior, thereby limiting or denying service. If you encounter this issue, we recommend using a self-deployed proxy service.
-
-#### Q5: I have correctly configured CORS policies for my local model (like Ollama), why can't I still connect using the online version?
-**A**: This is caused by the browser's **Mixed Content security policy**. For security reasons, browsers block secure HTTPS pages (like the online version) from sending requests to insecure HTTP addresses (like your local Ollama service).
-
-**Solutions**:
-To bypass this limitation, you need to have the application and API under the same protocol (e.g., both HTTP). We recommend the following approaches:
-1. **Use the desktop version**: Desktop applications have no browser restrictions and are the most stable and reliable way to connect to local models.
-2. **Docker deployment**: Docker deployment also uses HTTP
-3. **Use Chrome extension**: Extensions can bypass some security restrictions in certain situations.
-
-</details>
-
-
-## 🤝 Contributing
-
-<details>
-<summary>Click to view contribution guidelines</summary>
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-Tip: When developing with Cursor tool, it is recommended to do the following before committing:
-1. Use the "CodeReview" rule for review
-2. Check according to the review report format:
-   - Overall consistency of changes
-   - Code quality and implementation method
-   - Test coverage
-   - Documentation completeness
-3. Optimize based on review results before submitting
-
-</details>
-
-## 👏 Contributors
-
-Thanks to all the developers who have contributed to this project!
-
-<a href="https://github.com/linshenkx/prompt-optimizer/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=linshenkx/prompt-optimizer" alt="Contributors" />
-</a>
-
 ## 📄 License
 
-This project is licensed under the [MIT](LICENSE) License.
+This project is licensed under the [MIT](LICENSE) License, derived from the [Prompt Optimizer](https://github.com/linshenkx/prompt-optimizer) project.
 
 ---
 
-If this project is helpful to you, please consider giving it a Star ⭐️
-
 ## 👥 Contact Us
 
-- Submit an Issue
-- Create a Pull Request
-- Join the discussion group 
+- Business Cooperation: [Contact Email](#)
+- Technical Support: [Support Email](#)
+- Official Website: [Website Link](#)

@@ -5,14 +5,14 @@
 | Deployment Method | Advantages | Disadvantages |
 |---------|------|------|
 | One-click Deployment | Quick and convenient, no additional setup required | Cannot automatically sync updates from the source project |
-| Fork and Import | Can track source project updates, easier to maintain | First deployment requires manual root directory fix to enable Vercel proxy functionality |
+| Fork and Import | Can track project updates, easier to maintain | First deployment requires manual root directory fix to enable Vercel proxy functionality |
 
 ### Recommended Method: Fork the Project and Import to Vercel (Recommended)
 
 This method allows you to track project updates, making it easier to sync the latest features and bug fixes.
 
 1. **Fork the project to your GitHub account**
-   - Visit the [prompt-optimizer project](https://github.com/linshenkx/prompt-optimizer)
+   - Visit the [promptmaster-pro project](https://github.com/javalaozhao/promptmaster-pro)
    - Click the "Fork" button in the top right corner
    - After completing the fork operation, you will have a copy of this project under your GitHub account
 
@@ -23,7 +23,7 @@ This method allows you to track project updates, making it easier to sync the la
    - Configure the project (**Note**: Although you can set the root directory here, it is ineffective for multi-module projects and will still require manual fixing later)
    - Click "Deploy" to start deployment
 
-   ![Import project to Vercel](../images/vercel/import.png)
+   ![Import project to Vercel](../../images/vercel/import.png)
 
 3. **Fix the root directory setting (Strongly recommended)**
    - When deployed through import, although the project's `vercel.json` file already contains related fixes to make basic functionality work
@@ -37,7 +37,7 @@ This method allows you to track project updates, making it easier to sync the la
    
    d. Click "Save" to save the settings
    
-   ![Clear root directory setting](../images/vercel/setting.png)
+   ![Clear root directory setting](../../images/vercel/setting.png)
 
 4. **Configure environment variables (Optional)**
    - After deployment is complete, go to project settings
@@ -54,11 +54,11 @@ This method allows you to track project updates, making it easier to sync the la
    - On the right side of the latest deployment record, click the "..." button
    - Select the "Redeploy" option to trigger redeployment
    
-   ![Redeploy the project](../images/vercel/redeploy.png)
+   ![Redeploy the project](../../images/vercel/redeploy.png)
 
 6. **Sync upstream updates**
    - Open your forked project on GitHub
-   - If there are updates, it will show "This branch is X commits behind linshenkx:main"
+   - If there are updates, it will show "This branch is X commits behind javalaozhao:main"
    - Click the "Sync fork" button to sync the latest changes
    - Vercel will automatically detect code changes and redeploy
 
@@ -67,7 +67,7 @@ This method allows you to track project updates, making it easier to sync the la
 If you only need quick deployment and don't care about subsequent updates, you can use the one-click deployment method:
 
 1. Click the button below to deploy directly to Vercel
-   [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flinshenkx%2Fprompt-optimizer)
+   [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
 
 2. Follow Vercel's guidance to complete the deployment process
    
@@ -82,7 +82,7 @@ When the `ACCESS_PASSWORD` environment variable is configured, your site will en
 
 ### About Vercel Proxy Functionality
 
-Prompt Optimizer supports using Edge Runtime proxy to solve cross-origin issues when deployed on Vercel.
+PromptMaster Pro supports using Edge Runtime proxy to solve cross-origin issues when deployed on Vercel.
 
 1. **Confirm proxy functionality is available**
    - If using one-click deployment: proxy functionality should be directly available

@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-  prompt-optimizer:
-    image: linshen/prompt-optimizer:latest
+  promptmaster-pro:
+    image: promptmaster/promptmaster-pro:latest
     # Alternatively, you can build from source:
     # build:
     #   context: .
     #   dockerfile: Dockerfile
-    container_name: prompt-optimizer
+    container_name: promptmaster-pro
     restart: unless-stopped
     ports:
       - "8081:80"

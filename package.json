@@ -1,5 +1,5 @@
 {
-  "name": "prompt-optimizer",
+  "name": "promptmaster-pro",
   "version": "1.3.0",
   "private": true,
   "packageManager": "pnpm@10.6.1",
@@ -9,25 +9,17 @@
     "yarn": "请使用pnpm代替yarn"
   },
   "scripts": {
-    "build": "npm-run-all build:core build:ui build:parallel",
+    "build": "npm-run-all build:core build:ui build:web",
     "build:core": "pnpm -F @prompt-optimizer/core build",
     "build:ui": "pnpm -F @prompt-optimizer/ui build",
-    "build:parallel": "npm-run-all --parallel build:web build:ext",
     "build:web": "pnpm -F @prompt-optimizer/web build",
-    "build:ext": "pnpm -F @prompt-optimizer/extension build",
-    "build:desktop-only": "pnpm -F @prompt-optimizer/desktop build",
-    "build:desktop": "npm-run-all build:core build:ui build:web build:desktop-only",
     "dev": "npm-run-all clean:dist build:core build:ui dev:parallel",
     "dev:fresh": "npm-run-all clean pnpm-install dev",
     "dev:parallel": "concurrently -k -p \"[{name}]\" -n \"UI,WEB\" \"pnpm -F @prompt-optimizer/ui build --watch\" \"pnpm -F @prompt-optimizer/web dev\"",
-    "dev:ext": "pnpm -F @prompt-optimizer/extension dev",
-    "dev:desktop": "npm-run-all clean:dist build:core build:ui dev:desktop:parallel",
-    "dev:desktop:fresh": "npm-run-all clean pnpm-install dev:desktop",
-    "dev:desktop:parallel": "concurrently -k -p \"[{name}]\" -n \"WEB,DESKTOP\" \"pnpm -F @prompt-optimizer/web dev\" \"pnpm -F @prompt-optimizer/desktop dev\"",
     "test": "pnpm -r test --run --passWithNoTests",
     "clean": "npm-run-all clean:dist clean:vite",
-    "clean:dist": "rimraf packages/core/dist packages/ui/dist packages/web/dist packages/extension/dist packages/desktop/dist packages/desktop/web-dist",
-    "clean:vite": "rimraf packages/core/node_modules/.vite packages/ui/node_modules/.vite packages/web/node_modules/.vite packages/extension/node_modules/.vite",
+    "clean:dist": "rimraf packages/core/dist packages/ui/dist packages/web/dist",
+    "clean:vite": "rimraf packages/core/node_modules/.vite packages/ui/node_modules/.vite packages/web/node_modules/.vite",
     "pnpm-install": "pnpm install",
     "version:sync": "node scripts/sync-versions.js",
     "version": "pnpm run version:sync && git add -A",
@@ -39,7 +31,6 @@
     "@intlify/unplugin-vue-i18n": "^6.0.3",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
-    "electron": "^37.1.0",
     "i18next": "^24.2.2",
     "i18next-browser-languagedetector": "^8.0.4",
     "lodash-unified": "^1.0.3",
@@ -61,19 +52,21 @@
     "@vueuse/shared": "^12.7.0",
     "async-validator": "^4.2.5",
     "dayjs": "^1.11.13",
-    "electron-to-chromium": "^1.5.177",
     "lodash-es": "^4.17.21",
     "memoize-one": "^6.0.0",
     "normalize-wheel-es": "^1.2.0",
     "vue-i18n": "^10.0.6"
   },
-  "keywords": [],
+  "keywords": [
+    "prompt",
+    "optimizer",
+    "ai",
+    "llm",
+    "web-service"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "electron"
-    ],
     "overrides": {
       "builder-util-runtime": "9.2.10"
     }

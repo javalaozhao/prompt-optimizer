@@ -37,8 +37,7 @@ export default defineConfig(({ mode }) => {
         '@': resolve(__dirname, 'src'),
         '@prompt-optimizer/core': path.resolve(__dirname, '../core'),
         '@prompt-optimizer/ui': path.resolve(__dirname, '../ui'),
-        '@prompt-optimizer/web': path.resolve(__dirname, '../web'),
-        '@prompt-optimizer/extension': path.resolve(__dirname, '../extension')
+        '@prompt-optimizer/web': path.resolve(__dirname, '../web')
       }
     },
     optimizeDeps: {

@@ -5,14 +5,14 @@
 | 部署方式 | 优点 | 缺点 |
 |---------|------|------|
 | 一键部署 | 快速简便，无需额外设置 | 无法自动同步源项目更新 |
-| Fork后导入 | 可跟踪源项目更新，更易维护 | 第一次部署需要手动修复根目录设置以启用Vercel代理功能 |
+| Fork后导入 | 可跟踪项目更新，更易维护 | 第一次部署需要手动修复根目录设置以启用Vercel代理功能 |
 
 ### 推荐方式：Fork项目后导入到Vercel（推荐）
 
 这种方式可以让你跟踪项目更新，便于后续同步最新功能和bug修复。
 
 1. **Fork项目到自己的GitHub**
-   - 访问[prompt-optimizer项目](https://github.com/linshenkx/prompt-optimizer)
+   - 访问[promptmaster-pro项目](https://github.com/javalaozhao/promptmaster-pro)
    - 点击右上角的"Fork"按钮
    - 完成fork操作后，你将在自己的GitHub账号下拥有此项目的副本
 
@@ -23,7 +23,7 @@
    - 配置项目（**注意**：此处虽然可以设置根目录，但对多模块项目无效，仍需后续手动修复）
    - 点击"Deploy"开始部署
 
-   ![导入项目到Vercel](../images/vercel/import.png)
+   ![导入项目到Vercel](../../images/vercel/import.png)
 
 3. **修复根目录设置（强烈建议）**
    - 通过导入部署时，虽然项目的`vercel.json`文件已包含相关修复可以让基本功能正常工作
@@ -37,7 +37,7 @@
    
    d. 点击"Save"保存设置
    
-   ![清空根目录设置](../images/vercel/setting.png)
+   ![清空根目录设置](../../images/vercel/setting.png)
 
 4. **配置环境变量（可选）**
    - 部署完成后，进入项目设置
@@ -54,11 +54,11 @@
    - 在最新的部署记录右侧，点击"..."按钮
    - 选择"Redeploy"选项触发重新部署
    
-   ![重新部署项目](../images/vercel/redeploy.png)
+   ![重新部署项目](../../images/vercel/redeploy.png)
 
 6. **同步上游更新**
    - 在GitHub上打开你fork的项目
-   - 如果有更新，会显示"This branch is X commits behind linshenkx:main"
+   - 如果有更新，会显示"This branch is X commits behind javalaozhao:main"
    - 点击"Sync fork"按钮同步最新更改
    - Vercel会自动检测到代码变更并重新部署
 
@@ -67,7 +67,7 @@
 如果你只需要快速部署而不关心后续更新，可以使用一键部署方式：
 
 1. 点击以下按钮直接部署到Vercel
-   [![部署到 Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flinshenkx%2Fprompt-optimizer)
+   [![部署到 Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
 
 2. 按照Vercel的引导完成部署流程
    
@@ -75,7 +75,7 @@
 
 ### 关于Vercel代理功能
 
-Prompt Optimizer在Vercel部署时支持使用Edge Runtime代理解决跨域问题。
+PromptMaster Pro在Vercel部署时支持使用Edge Runtime代理解决跨域问题。
 
 1. **确认代理功能可用**
    - 如使用一键部署：代理功能应直接可用
