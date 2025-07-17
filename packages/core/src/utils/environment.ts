@@ -128,6 +128,6 @@ export function isElectronApiReady(): boolean {
  * 等待Electron API完全就绪
  * 在Web服务版本中，立即返回false
  */
-export function waitForElectronApi(timeout: number = 5000): Promise<boolean> {
+export function waitForElectronApi(_timeout: number = 5000): Promise<boolean> {
   return Promise.resolve(false);
 }

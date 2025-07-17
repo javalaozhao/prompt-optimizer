@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { installI18nOnly } from '@prompt-optimizer/ui'
 import App from './App.vue'
+import './index.css'
 
 import '@prompt-optimizer/ui/dist/style.css'
 

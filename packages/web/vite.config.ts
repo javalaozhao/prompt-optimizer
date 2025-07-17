@@ -35,14 +35,11 @@ export default defineConfig(({ mode }) => {
       preserveSymlinks: true,
       alias: {
         '@': resolve(__dirname, 'src'),
-        '@prompt-optimizer/core': path.resolve(__dirname, '../core'),
-        '@prompt-optimizer/ui': path.resolve(__dirname, '../ui'),
-        '@prompt-optimizer/web': path.resolve(__dirname, '../web')
       }
     },
     optimizeDeps: {
       // 预构建依赖
-      include: ['element-plus'],
+      include: ['element-plus', '@prompt-optimizer/ui', '@prompt-optimizer/core'],
     },
     define: {
       'process.env': {

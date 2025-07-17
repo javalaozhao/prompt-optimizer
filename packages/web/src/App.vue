@@ -10,7 +10,10 @@
     <MainLayoutUI>
       <!-- Title Slot -->
       <template #title>
-        PromptMaster Pro
+        <div class="flex items-center gap-3">
+          <img src="/logo.png" alt="Logo" class="h-8 w-8 rounded-lg">
+          <span class="text-xl font-bold">Prompt Generator</span>
+        </div>
       </template>
 
       <!-- Actions Slot -->

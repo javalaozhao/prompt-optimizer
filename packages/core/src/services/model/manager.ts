@@ -4,7 +4,7 @@ import { StorageAdapter } from '../storage/adapter';
 import { defaultModels } from './defaults';
 import { ModelConfigError } from '../llm/errors';
 import { validateLLMParams } from './validation';
-import { ElectronConfigManager, isElectronRenderer } from './electron-config';
+import { getConfigManager, isElectronRenderer } from './electron-config';
 import { CORE_SERVICE_KEYS } from '../../constants/storage-keys';
 import { ImportExportError } from '../../interfaces/import-export';
 
@@ -50,9 +50,11 @@ export class ModelManager implements IModelManager {
       // 在Electron渲染进程中，先同步环境变量
       if (isElectronRenderer()) {
         console.log('[ModelManager] Electron environment detected, syncing config from main process...');
-        const configManager = ElectronConfigManager.getInstance();
-        await configManager.syncFromMainProcess();
-        console.log('[ModelManager] Environment variables synced from main process');
+        const configManager = getConfigManager();
+        if (configManager) {
+          await configManager.syncFromMainProcess();
+          console.log('[ModelManager] Environment variables synced from main process');
+        }
       }
 
       // 从存储中加载现有配置
@@ -128,8 +130,8 @@ export class ModelManager implements IModelManager {
   private getDefaultModels(): Record<string, ModelConfig> {
     // 在Electron环境下使用配置管理器生成配置
     if (isElectronRenderer()) {
-      const configManager = ElectronConfigManager.getInstance();
-      if (configManager.isInitialized()) {
+      const configManager = getConfigManager();
+      if (configManager && configManager.isInitialized()) {
         return configManager.generateDefaultModels();
       } else {
         console.warn('[ModelManager] ElectronConfigManager not initialized, using fallback defaults');
