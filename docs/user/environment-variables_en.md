@@ -1,6 +1,6 @@
 # Environment Variables Configuration Guide
 
-PromptMaster Pro supports configuration through environment variables, which is particularly useful in Docker and Vercel deployments. This document details all supported environment variables and their purposes.
+Prompt Generator supports configuration through environment variables, which is particularly useful in Docker and Vercel deployments. This document details all supported environment variables and their purposes.
 
 ## API Key Configuration
 
@@ -41,8 +41,8 @@ The following environment variables are used to configure access control, protec
 docker run -d -p 80:80 \
   -e VITE_OPENAI_API_KEY=your_key \
   -e ACCESS_PASSWORD=your_password \
-  --name promptmaster-pro \
-  promptmaster/promptmaster-pro
+  --name prompt-generator \
+  prompt-generator/prompt-generator
 ```
 
 ### Method 2: Via .env File

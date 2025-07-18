@@ -1,12 +1,12 @@
-# PromptMaster Pro 🚀
+# Prompt Generator 🚀
 
 <div align="center">
 
 [English](README_EN.md) | [中文](README.md)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Docker Pulls](https://img.shields.io/docker/pulls/promptmaster/promptmaster-pro)](https://hub.docker.com/r/promptmaster/promptmaster-pro)
-[![Deploy with Vercel](https://img.shields.io/badge/Vercel-indigo?style=flat&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
+[![Docker Pulls](https://img.shields.io/docker/pulls/prompt-generator/prompt-generator)](https://hub.docker.com/r/prompt-generator/prompt-generator)
+[![Deploy with Vercel](https://img.shields.io/badge/Vercel-indigo?style=flat&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fprompt-generator)
 
 [Live Demo](#) | [Quick Start](#quick-start) | [FAQ](#faq) | [Deployment Guide](docs/user/deployment/vercel_en.md)
 
@@ -16,7 +16,7 @@
 
 ## 📖 Project Introduction
 
-PromptMaster Pro is an AI prompt optimization tool specifically designed for enterprises and professional users, helping you write better AI prompts and improve AI output quality. As a solution focused on web services, it provides simple deployment methods and powerful features, suitable for team collaboration and enterprise-level applications.
+Prompt Generator is an AI prompt optimization tool specifically designed for enterprises and professional users, helping you write better AI prompts and improve AI output quality. As a solution focused on web services, it provides simple deployment methods and powerful features, suitable for team collaboration and enterprise-level applications.
 
 ### 🎥 Feature Demonstration
 
@@ -55,16 +55,16 @@ docker run -d -p 80:80 \
   -e ACCESS_USERNAME=your_username \  # Optional, defaults to "admin"
   -e ACCESS_PASSWORD=your_password \  # Set access password
   --restart unless-stopped \
-  --name promptmaster-pro \
-  promptmaster/promptmaster-pro
+  --name prompt-generator \
+  prompt-generator/prompt-generator
 ```
 
 ### 2. Docker Compose Deployment
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/javalaozhao/promptmaster-pro.git
-cd promptmaster-pro
+git clone https://github.com/javalaozhao/prompt-generator.git
+cd prompt-generator
 
 # 2. Create .env file for API keys and authentication
 cat > .env << EOF
@@ -91,9 +91,9 @@ You can also directly edit the docker-compose.yml file to customize your configu
 
 ```yaml
 services:
-  promptmaster-pro:
-    image: promptmaster/promptmaster-pro:latest
-    container_name: promptmaster-pro
+  prompt-generator:
+    image: prompt-generator/prompt-generator:latest
+    container_name: prompt-generator
     restart: unless-stopped
     ports:
       - "8081:80"  # Modify port mapping
@@ -105,7 +105,7 @@ services:
 ### 3. Vercel Deployment
 
 Method 1: One-click deployment to your own Vercel (convenient but without automatic updates):
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fprompt-generator)
 
 Method 2: Fork the project and import to Vercel (recommended, but requires manual setup according to deployment docs):
    - First fork the project to your GitHub account
@@ -154,8 +154,8 @@ Configure environment variables through the `-e` parameter when deploying with D
 
 ```bash
 # 1. Clone the project
-git clone https://github.com/javalaozhao/promptmaster-pro.git
-cd promptmaster-pro
+git clone https://github.com/javalaozhao/prompt-generator.git
+cd prompt-generator
 
 # 2. Install dependencies
 pnpm install

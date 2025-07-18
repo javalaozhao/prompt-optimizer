@@ -12,7 +12,7 @@
 这种方式可以让你跟踪项目更新，便于后续同步最新功能和bug修复。
 
 1. **Fork项目到自己的GitHub**
-   - 访问[promptmaster-pro项目](https://github.com/javalaozhao/promptmaster-pro)
+   - 访问[prompt-generator项目](https://github.com/javalaozhao/prompt-generator)
    - 点击右上角的"Fork"按钮
    - 完成fork操作后，你将在自己的GitHub账号下拥有此项目的副本
 
@@ -67,7 +67,7 @@
 如果你只需要快速部署而不关心后续更新，可以使用一键部署方式：
 
 1. 点击以下按钮直接部署到Vercel
-   [![部署到 Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
+   [![部署到 Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fprompt-generator)
 
 2. 按照Vercel的引导完成部署流程
    
@@ -75,7 +75,7 @@
 
 ### 关于Vercel代理功能
 
-PromptMaster Pro在Vercel部署时支持使用Edge Runtime代理解决跨域问题。
+Prompt Generator在Vercel部署时支持使用Edge Runtime代理解决跨域问题。
 
 1. **确认代理功能可用**
    - 如使用一键部署：代理功能应直接可用

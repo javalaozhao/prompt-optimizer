@@ -1,12 +1,12 @@
 # 安全配置指南
 
-PromptMaster Pro提供了多种安全机制，以保护您的部署和数据。本文档详细说明了如何配置和使用这些安全功能。
+Prompt Generator提供了多种安全机制，以保护您的部署和数据。本文档详细说明了如何配置和使用这些安全功能。
 
 ## 访问控制
 
 ### 密码保护
 
-PromptMaster Pro默认启用密码保护功能，通过设置环境变量`ACCESS_PASSWORD`来控制。
+Prompt Generator默认启用密码保护功能，通过设置环境变量`ACCESS_PASSWORD`来控制。
 
 #### 配置方法
 
@@ -14,8 +14,8 @@ PromptMaster Pro默认启用密码保护功能，通过设置环境变量`ACCESS
    ```bash
    docker run -d -p 80:80 \
      -e ACCESS_PASSWORD=your_secure_password \
-     --name promptmaster-pro \
-     promptmaster/promptmaster-pro
+     --name prompt-generator \
+     prompt-generator/prompt-generator
    ```
 
 2. **Vercel部署**:
@@ -38,8 +38,8 @@ PromptMaster Pro默认启用密码保护功能，通过设置环境变量`ACCESS
 docker run -d -p 80:80 \
   -e ACCESS_USERNAME=your_username \
   -e ACCESS_PASSWORD=your_password \
-  --name promptmaster-pro \
-  promptmaster/promptmaster-pro
+  --name prompt-generator \
+  prompt-generator/prompt-generator
 ```
 
 ## API密钥安全
@@ -55,8 +55,8 @@ docker run -d -p 80:80 \
    docker run -d -p 80:80 \
      -e VITE_OPENAI_API_KEY=your_openai_key \
      -e ACCESS_PASSWORD=your_password \
-     --name promptmaster-pro \
-     promptmaster/promptmaster-pro
+     --name prompt-generator \
+     prompt-generator/prompt-generator
    ```
 
 2. **Vercel部署**:
@@ -65,7 +65,7 @@ docker run -d -p 80:80 \
 
 ### 客户端安全
 
-PromptMaster Pro采用纯客户端架构，具有以下安全特性：
+Prompt Generator采用纯客户端架构，具有以下安全特性：
 
 - API密钥仅存储在用户的浏览器本地存储中
 - 所有API请求直接从用户浏览器发送到AI服务提供商
@@ -75,7 +75,7 @@ PromptMaster Pro采用纯客户端架构，具有以下安全特性：
 
 ### Vercel代理功能
 
-为了解决跨域问题，PromptMaster Pro提供了Vercel代理功能，可以安全地代理API请求。
+为了解决跨域问题，Prompt Generator提供了Vercel代理功能，可以安全地代理API请求。
 
 #### 工作原理
 
@@ -93,7 +93,7 @@ PromptMaster Pro采用纯客户端架构，具有以下安全特性：
 
 ### 本地存储
 
-PromptMaster Pro将所有用户数据存储在浏览器的本地存储中，包括：
+Prompt Generator将所有用户数据存储在浏览器的本地存储中，包括：
 
 - 历史记录
 - 模型配置
@@ -146,4 +146,4 @@ PromptMaster Pro将所有用户数据存储在浏览器的本地存储中，包�
 如果您发现任何安全漏洞或问题，请通过以下方式联系我们：
 
 - 发送电子邮件至：[security@example.com](mailto:security@example.com)
-- 在GitHub上提交安全问题：[https://github.com/javalaozhao/promptmaster-pro/issues](https://github.com/javalaozhao/promptmaster-pro/issues)
+- 在GitHub上提交安全问题：[https://github.com/javalaozhao/prompt-generator/issues](https://github.com/javalaozhao/prompt-generator/issues)

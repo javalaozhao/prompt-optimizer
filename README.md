@@ -1,12 +1,12 @@
-# PromptMaster Pro (提示词大师专业版) 🚀
+# Prompt Generator (提示词生成器) 🚀
 
 <div align="center">
 
 [English](README_EN.md) | [中文](README.md)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Docker Pulls](https://img.shields.io/docker/pulls/promptmaster/promptmaster-pro)](https://hub.docker.com/r/promptmaster/promptmaster-pro)
-[![Deploy with Vercel](https://img.shields.io/badge/Vercel-indigo?style=flat&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
+[![Docker Pulls](https://img.shields.io/docker/pulls/prompt-generator/prompt-generator)](https://hub.docker.com/r/prompt-generator/prompt-generator)
+[![Deploy with Vercel](https://img.shields.io/badge/Vercel-indigo?style=flat&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fprompt-generator)
 
 [在线体验](#) | [快速开始](#快速开始) | [常见问题](#常见问题) | [部署指南](docs/user/deployment/vercel.md)
 
@@ -16,7 +16,7 @@
 
 ## 📖 项目简介
 
-PromptMaster Pro是一个专为企业和专业用户设计的AI提示词优化工具，帮助您编写更好的AI提示词，提升AI输出质量。作为一个专注于Web服务的解决方案，它提供了简单的部署方式和强大的功能，适合团队协作和企业级应用。
+Prompt Generator是一个专为企业和专业用户设计的AI提示词生成器，帮助您编写更好的AI提示词，提升AI输出质量。作为一个专注于Web服务的解决方案，它提供了简单的部署方式和强大的功能，适合团队协作和企业级应用。
 
 ### 🎥 功能演示
 
@@ -55,16 +55,16 @@ docker run -d -p 80:80 \
   -e ACCESS_USERNAME=your_username \  # 可选，默认为"admin"
   -e ACCESS_PASSWORD=your_password \  # 设置访问密码
   --restart unless-stopped \
-  --name promptmaster-pro \
-  promptmaster/promptmaster-pro
+  --name prompt-generator \
+  prompt-generator/prompt-generator
 ```
 
 ### 2. Docker Compose部署
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/javalaozhao/promptmaster-pro.git
-cd promptmaster-pro
+git clone https://github.com/javalaozhao/prompt-generator.git
+cd prompt-generator
 
 # 2. 创建.env文件配置API密钥和访问认证
 cat > .env << EOF
@@ -91,9 +91,9 @@ docker compose logs -f
 
 ```yaml
 services:
-  promptmaster-pro:
-    image: promptmaster/promptmaster-pro:latest
-    container_name: promptmaster-pro
+  prompt-generator:
+    image: prompt-generator/prompt-generator:latest
+    container_name: prompt-generator
     restart: unless-stopped
     ports:
       - "8081:80"  # 修改端口映射
@@ -105,7 +105,7 @@ services:
 ### 3. Vercel部署
 
 方式1：一键部署到自己的Vercel(方便，但后续无法自动更新)：
-   [![部署到 Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
+   [![部署到 Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fprompt-generator)
 
 方式2: Fork项目后在Vercel中导入（推荐，但需参考部署文档进行手动设置）：
    - 先Fork项目到自己的GitHub
@@ -154,8 +154,8 @@ Docker部署时通过 `-e` 参数配置环境变量：
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/javalaozhao/promptmaster-pro.git
-cd promptmaster-pro
+git clone https://github.com/javalaozhao/prompt-generator.git
+cd prompt-generator
 
 # 2. 安装依赖
 pnpm install

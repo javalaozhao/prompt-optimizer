@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ 'dark': isDark }">
     <!-- 加载界面 -->
-    <div v-if="loadProgress < 100" class="loading-overlay">
+    <div v-if="isInitializing || !services" class="loading-overlay">
       <div class="loading-content">
         <div class="loading-spinner"></div>
         <p class="loading-text">{{ loadingMessage }}</p>
@@ -90,6 +90,11 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useTheme } from '@prompt-optimizer/ui'
+import { usePerformance } from '@prompt-optimizer/ui'
+import { useAppInitializer } from '@prompt-optimizer/ui'
+
 // 导入现代化组件
 import ModernLayout from './components/ModernLayout.vue'
 import ModernPromptOptimizer from './components/ModernPromptOptimizer.vue'
@@ -97,13 +102,18 @@ import ModernTemplateGallery from './components/ModernTemplateGallery.vue'
 import ModernModelManager from './components/ModernModelManager.vue'
 import ModernHistoryView from './components/ModernHistoryView.vue'
 
+const { t } = useI18n()
+const { initTheme, isDark } = useTheme()
+const { state: performanceState } = usePerformance()
+const { services, isInitializing } = useAppInitializer()
+
 // 菜单项
 const menuItems = [
-  { id: 'dashboard', label: '控制台', icon: '🏠' },
-  { id: 'optimizer', label: '提示词优化', icon: '🎯' },
-  { id: 'templates', label: '模板库', icon: '📋' },
-  { id: 'history', label: '历史记录', icon: '📜' },
-  { id: 'settings', label: '设置', icon: '⚙️' }
+  { id: 'dashboard', title: '控制台', icon: 'home', path: '/' },
+  { id: 'optimizer', title: '提示词优化', icon: 'prompt', path: '/optimizer' },
+  { id: 'templates', title: '模板库', icon: 'template', path: '/templates' },
+  { id: 'history', title: '历史记录', icon: 'history', path: '/history' },
+  { id: 'settings', title: '设置', icon: 'settings', path: '/settings' }
 ]
 
 // 状态
@@ -113,18 +123,19 @@ const stats = ref({
   templateCount: 0,
   modelCount: 0
 })
-const loadProgress = ref(0)
 
 // 计算属性
+const loadProgress = computed(() => performanceState.value.loadProgress)
 const loadingMessage = computed(() => {
-  if (loadProgress.value < 100) return '正在初始化应用...'
+  if (isInitializing.value) return '正在初始化应用...'
+  if (!services.value) return '正在加载服务...'
   return '正在准备界面...'
 })
 
 // 方法
-const handleMenuSelect = (menuId: string) => {
-  activeMenu.value = menuId
-  console.log('菜单选择:', menuId)
+const handleMenuSelect = (item: any) => {
+  activeMenu.value = item.id
+  console.log('菜单选择:', item.title)
 }
 
 const handleBack = () => {
@@ -133,11 +144,13 @@ const handleBack = () => {
 
 const handleOptimize = (prompt: string) => {
   console.log('优化提示词:', prompt)
+  // 跳转到优化器页面
   activeMenu.value = 'optimizer'
 }
 
 const handleTemplateSelect = (template: any) => {
   console.log('选择模板:', template.name)
+  // 使用模板
 }
 
 const openModelConfig = () => {
@@ -150,21 +163,16 @@ const handleHistoryReuse = (item: any) => {
 
 // 生命周期
 onMounted(() => {
-  // 模拟加载过程
-  let progress = 0
-  const interval = setInterval(() => {
-    progress += 20
-    loadProgress.value = Math.min(progress, 100)
-    if (progress >= 100) {
-      clearInterval(interval)
-      // 模拟统计数据
-      stats.value = {
-        promptCount: 156,
-        templateCount: 24,
-        modelCount: 8
-      }
+  initTheme()
+  
+  // 模拟统计数据
+  setTimeout(() => {
+    stats.value = {
+      promptCount: 156,
+      templateCount: 24,
+      modelCount: 8
     }
-  }, 300)
+  }, 1000)
 })
 </script>
 

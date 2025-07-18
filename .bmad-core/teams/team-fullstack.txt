@@ -1,0 +1,60 @@
+# BMad Full-Stack Development Team
+
+## 项目配置
+**项目名称**: PromptMaster Pro Modernization
+**技术栈**: Vue3 + TypeScript + Vite + Element Plus + TailwindCSS
+**目标**: 现代化单页面应用
+
+## 开发团队配置
+
+### @pm (产品经理)
+负责需求管理和用户故事
+- 关注用户体验和功能完整性
+- 确保改造不影响核心功能
+
+### @architect (架构师)
+负责技术架构和代码结构
+- 设计现代化架构方案
+- 确保性能优化和可扩展性
+
+### @dev (开发工程师)
+负责具体功能实现
+- 组件开发和状态管理
+- 响应式布局和交互实现
+
+### @sm (Scrum Master)
+负责开发流程和协作
+- 任务分解和进度跟踪
+- 风险识别和解决方案
+
+## 快速开始命令
+
+```bash
+# 启动开发环境
+npm run dev
+
+# 运行BMad分析
+node scripts/bmad-dev.js analyze
+
+# 执行现代化改造
+node scripts/bmad-dev.js modernize
+
+# 运行测试
+npm run test
+```
+
+## 开发代理调用
+
+### 使用方式
+在IDE中输入代理命令：
+- `@pm 请分析用户需求`
+- `@architect 设计现代化架构`
+- `@dev 实现响应式布局`
+- `@sm 制定开发计划`
+
+## 工作流
+1. **需求分析** → @pm
+2. **架构设计** → @architect  
+3. **开发实现** → @dev
+4. **测试验证** → @qa
+5. **发布部署** → @sm

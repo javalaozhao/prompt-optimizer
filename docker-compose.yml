@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-  promptmaster-pro:
-    image: promptmaster/promptmaster-pro:latest
+  prompt-generator:
+    image: prompt-generator/prompt-generator:latest
     # Alternatively, you can build from source:
     # build:
     #   context: .
     #   dockerfile: Dockerfile
-    container_name: promptmaster-pro
+    container_name: prompt-generator
     restart: unless-stopped
     ports:
       - "8081:80"

@@ -1,0 +1,32 @@
+{
+  "project": {
+    "name": "prompt-optimizer",
+    "type": "monorepo",
+    "tech": ["vue3", "typescript", "vite", "element-plus", "tailwindcss"]
+  },
+  "development": {
+    "port": 18182,
+    "hotReload": true,
+    "autoImport": true,
+    "typeChecking": true
+  },
+  "ai": {
+    "models": ["openai", "google-generative-ai"],
+    "prompts": {
+      "codeReview": "请检查这段代码的质量，提供改进建议",
+      "optimization": "请优化这段代码的性能和可读性",
+      "documentation": "请为这段代码添加清晰的注释和文档"
+    }
+  },
+  "workspaces": {
+    "core": "packages/core",
+    "ui": "packages/ui", 
+    "web": "packages/web"
+  },
+  "scripts": {
+    "dev": "npm run dev:fresh",
+    "build": "npm run build",
+    "test": "npm run test",
+    "clean": "npm run clean"
+  }
+}

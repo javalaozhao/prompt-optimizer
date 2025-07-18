@@ -1,6 +1,6 @@
 # 环境变量配置指南
 
-PromptMaster Pro支持通过环境变量进行配置，这在Docker部署和Vercel部署中特别有用。本文档详细说明了所有支持的环境变量及其用途。
+Prompt Generator支持通过环境变量进行配置，这在Docker部署和Vercel部署中特别有用。本文档详细说明了所有支持的环境变量及其用途。
 
 ## API密钥配置
 
@@ -41,8 +41,8 @@ PromptMaster Pro支持通过环境变量进行配置，这在Docker部署和Verc
 docker run -d -p 80:80 \
   -e VITE_OPENAI_API_KEY=your_key \
   -e ACCESS_PASSWORD=your_password \
-  --name promptmaster-pro \
-  promptmaster/promptmaster-pro
+  --name prompt-generator \
+  prompt-generator/prompt-generator
 ```
 
 ### 方法2：通过.env文件

@@ -12,7 +12,7 @@
 This method allows you to track project updates, making it easier to sync the latest features and bug fixes.
 
 1. **Fork the project to your GitHub account**
-   - Visit the [promptmaster-pro project](https://github.com/javalaozhao/promptmaster-pro)
+   - Visit the [prompt-generator project](https://github.com/javalaozhao/prompt-generator)
    - Click the "Fork" button in the top right corner
    - After completing the fork operation, you will have a copy of this project under your GitHub account
 
@@ -67,7 +67,7 @@ This method allows you to track project updates, making it easier to sync the la
 If you only need quick deployment and don't care about subsequent updates, you can use the one-click deployment method:
 
 1. Click the button below to deploy directly to Vercel
-   [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fpromptmaster-pro)
+   [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjavalaozhao%2Fprompt-generator)
 
 2. Follow Vercel's guidance to complete the deployment process
    
@@ -82,7 +82,7 @@ When the `ACCESS_PASSWORD` environment variable is configured, your site will en
 
 ### About Vercel Proxy Functionality
 
-PromptMaster Pro supports using Edge Runtime proxy to solve cross-origin issues when deployed on Vercel.
+Prompt Generator supports using Edge Runtime proxy to solve cross-origin issues when deployed on Vercel.
 
 1. **Confirm proxy functionality is available**
    - If using one-click deployment: proxy functionality should be directly available
