@@ -83,8 +83,16 @@ export class StaticLoader {
         
         // 只有内置模板且有language字段时才按语言分类
         if (template.isBuiltin && language) {
-          byLanguage[language][id] = template;
-          byType[normalizedType][language][id] = template;
+          // 确保 language 是有效的 Language 类型
+          const safeLanguage = language as Language;
+          if (safeLanguage === 'zh' || safeLanguage === 'en') {
+            byLanguage[safeLanguage][id] = template;
+            
+            // 确保 normalizedType 是有效的 TemplateType 类型
+            if (normalizedType === 'optimize' || normalizedType === 'iterate' || normalizedType === 'user-optimize') {
+              byType[normalizedType][safeLanguage][id] = template;
+            }
+          }
         }
       });
 

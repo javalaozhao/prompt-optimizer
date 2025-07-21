@@ -1,0 +1,51 @@
+{
+  "Header": {
+    "tools": "Tools",
+    "blog": "Blog",
+    "github": "GitHub"
+  },
+  "app": {
+    "title": "Prompt Generator",
+    "logoAlt": "Logo"
+  },
+  "Homepage": {
+    "title": "AI Prompt Engineering Toolkit",
+    "description": "A collection of powerful tools to help you create, test, and optimize your AI prompts."
+  },
+  "Brand": {
+    "name": "Prompt Optimizer"
+  },
+  "PromptOptimizer": {
+    "title": "Prompt Optimizer",
+    "inputPanel": {
+      "title": "Enter your prompt",
+      "placeholder": "Type or paste your original prompt here...",
+      "optimizeButton": "Optimize"
+    },
+    "resultsPanel": {
+      "title": "Optimized Prompt",
+      "optimizedPlaceholder": "The optimized prompt will appear here...",
+      "versionPrefix": "V"
+    },
+    "testPanel": {
+      "title": "Test Panel",
+      "placeholder": "Test your prompts here."
+    }
+  },
+  "Auth": {
+    "title": "Access Verification - {brand}",
+    "heading": "{brand}",
+    "subtitle": "This site is password protected",
+    "password": {
+      "label": "Access Password",
+      "placeholder": "Enter access password"
+    },
+    "submitButton": "Verify & Access",
+    "loading": "Verifying, please wait...",
+    "footer": "Secure Access Control | {poweredBy}",
+    "error": {
+      "network": "Network error, please try again",
+      "invalidPassword": "Invalid password, please try again"
+    }
+  }
+}

@@ -3,7 +3,7 @@
   <button
     @click="toggleLanguage"
     class="theme-icon-button ml-auto"
-    :aria-label="currentLocale === 'zh-CN' ? '切换到英文' : '切换到中文'"
+    :aria-label="t('languageSwitch.toggle.ariaLabel')"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="10"/>
@@ -16,11 +16,13 @@
 <script setup lang="ts">
 import { computed, inject } from 'vue'
 import { i18n } from '../plugins/i18n'
+import { useI18n } from 'vue-i18n'
 import { UI_SETTINGS_KEYS } from '@prompt-optimizer/core'
 import { usePreferences } from '../composables/usePreferenceManager'
 import type { Ref } from 'vue'
 import type { AppServices } from '../types/services'
 
+const { t } = useI18n()
 const services = inject<Ref<AppServices | null>>('services')!;
 const { setPreference } = usePreferences(services);
 

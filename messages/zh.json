@@ -1,0 +1,50 @@
+{
+  "Header": {
+    "tools": "工具",
+    "blog": "博客",
+    "github": "GitHub"
+  },
+  "app": {
+    "title": "提示词生成器",
+    "logoAlt": "标志"
+  },
+  "Homepage": {
+    "title": "AI 提示词工程工具箱",
+    "description": "一系列强大的工具，帮助您创建、测试和优化您的 AI 提示词。"
+  },
+  "Brand": {
+    "name": "提示词优化器"
+  },
+  "PromptOptimizer": {
+    "title": "提示词优化器",
+    "inputPanel": {
+      "title": "输入您的提示词",
+      "placeholder": "在此处输入或粘贴您的原始提示词...",
+      "optimizeButton": "优化"
+    },
+    "resultsPanel": {
+      "title": "优化后的提示词",
+      "placeholder": "优化后的提示词将显示在此处。"
+    },
+    "testPanel": {
+      "title": "测试面板",
+      "placeholder": "在这里测试您的提示词。"
+    }
+  },
+  "Auth": {
+    "title": "访问验证 - {brand}",
+    "heading": "{brand}",
+    "subtitle": "此站点受密码保护",
+    "password": {
+      "label": "访问密码",
+      "placeholder": "请输入访问密码"
+    },
+    "submitButton": "验证并访问",
+    "loading": "验证中，请稍候...",
+    "footer": "安全访问控制 | 由 Vercel 提供支持",
+    "error": {
+      "network": "网络错误，请重试",
+      "invalidPassword": "密码错误，请重试"
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { Template } from '../../types';
 
 export const template: Template = {
   id: 'general-optimize',
-  name: '通用优化',
+  name: 'template.general-optimize.name',
   content: `你是一个专业的AI提示词优化专家。请帮我优化以下prompt，并按照以下格式返回：
 
 # Role: [角色名称]
@@ -68,9 +68,9 @@ export const template: Template = {
     version: '1.3.0',
     lastModified: 1704067200000, // 2024-01-01 00:00:00 UTC (固定值，内置模板不可修改)
     author: 'System',
-    description: '通用优化提示词，适用于大多数场景',
+    description: 'template.general-optimize.description',
     templateType: 'optimize',
-    language: 'zh'
+    language: 'universal'
   },
   isBuiltin: true
 }; 

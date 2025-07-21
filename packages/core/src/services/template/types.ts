@@ -11,7 +11,7 @@ export interface TemplateMetadata {
   author?: string;          // 作者（可选）
   description?: string;     // 描述（可选）
   templateType: 'optimize' | 'userOptimize' | 'iterate'; // 模板类型标识
-  language?: 'zh' | 'en';   // 模板语言（可选，主要用于内置模板语言切换）
+      language?: 'zh' | 'en' | 'universal';   // 模板语言（可选，主要用于内置模板语言切换）
   [key: string]: any;       // 允许任意额外字段
 }
 

@@ -86,13 +86,14 @@ export default {
     dataManager: '数据管理',
   },
   promptOptimizer: {
+    loading: '加载提示词...',
     title: '提示词优化器',
     inputPlaceholder: '请输入需要优化的prompt...',
     optimize: '开始优化 →',
     history: '历史记录',
     save: '保存提示词',
     share: '分享',
-    export: '导出',
+    'export-title': '导出模板',
     originalPrompt: '原始提示词',
     optimizeModel: '优化模型',
     templateLabel: '优化提示词',
@@ -107,7 +108,27 @@ export default {
     systemPromptPlaceholder: '请输入需要优化的系统提示词...',
     userPromptPlaceholder: '请输入需要优化的用户提示词...',
     systemPromptHelp: '系统提示词优化模式：优化用于定义AI助手角色、行为和回应风格的系统提示词',
-    userPromptHelp: '用户提示词优化模式：优化用户与AI交互时使用的提示词，提高交互效果和准确性'
+    userPromptHelp: '用户提示词优化模式：优化用户与AI交互时使用的提示词，提高交互效果和准确性',
+    optimized: '优化后的提示词',
+    optimizing: '优化中...',
+    continueOptimize: '继续优化',
+    copy: '复制',
+    optimizedPlaceholder: '优化后的提示词将显示在这里...',
+    versionPrefix: 'V',
+    iterateDirection: '请输入需要优化的方向：',
+    iteratePlaceholder: '例如：使提示词更简洁、增加特定功能描述等...',
+    confirmOptimize: '确认优化',
+    iterateTitle: '迭代功能提示词',
+    selectIterateTemplate: '请选择迭代提示词：',
+    diff: {
+      compare: '与上版对比',
+      exit: '退出对比',
+      enable: '启用文本对比',
+      disable: '关闭文本对比'
+    },
+    error: {
+      noTemplate: '请先选择迭代提示词'
+    }
   },
   settings: {
     title: '设置',
@@ -359,7 +380,39 @@ export default {
     disableMarkdown: '关闭Markdown渲染',
     thinking: '思考过程'
   },
+
+  output: {
+    title: '测试结果',
+    copy: '复制',
+    placeholder: '测试结果将显示在这里...',
+    processing: '处理中...',
+    success: {
+      copied: '复制成功'
+    },
+    error: {
+      copyFailed: '复制失败'
+    }
+  },
+  model: {
+    select: {
+      placeholder: '请选择模型',
+      configure: '配置模型',
+      noModels: '请配置模型',
+      noAvailableModels: '暂无可用模型'
+    },
+    manager: {
+      displayName: '例如: 自定义模型',
+      apiUrl: 'API 地址',
+      defaultModel: '默认模型名称',
+      modelNamePlaceholder: '例如: gpt-3.5-turbo'
+    }
+  },
   template: {
+    loading: '加载模板...',
+    'general-optimize': {
+      name: '通用优化',
+      description: '通用优化提示词，适用于大多数场景'
+    },
     noDescription: '暂无描述',
     configure: '配置提示词',
     selected: '已选择',
@@ -405,53 +458,6 @@ export default {
       exportFailed: '导出提示词失败',
       importFailed: '导入提示词失败',
       readFailed: '读取文件失败'
-    }
-  },
-  prompt: {
-    optimized: '优化后的提示词',
-    optimizing: '优化中...',
-    continueOptimize: '继续优化',
-    copy: '复制',
-    optimizedPlaceholder: '优化后的提示词将显示在这里...',
-    iterateDirection: '请输入需要优化的方向：',
-    iteratePlaceholder: '例如：使提示词更简洁、增加特定功能描述等...',
-    confirmOptimize: '确认优化',
-    iterateTitle: '迭代功能提示词',
-    selectIterateTemplate: '请选择迭代提示词：',
-    diff: {
-      compare: '与上版对比',
-      exit: '退出对比',
-      enable: '启用文本对比',
-      disable: '关闭文本对比'
-    },
-    error: {
-      noTemplate: '请先选择迭代提示词'
-    }
-  },
-  output: {
-    title: '测试结果',
-    copy: '复制',
-    placeholder: '测试结果将显示在这里...',
-    processing: '处理中...',
-    success: {
-      copied: '复制成功'
-    },
-    error: {
-      copyFailed: '复制失败'
-    }
-  },
-  model: {
-    select: {
-      placeholder: '请选择模型',
-      configure: '配置模型',
-      noModels: '请配置模型',
-      noAvailableModels: '暂无可用模型'
-    },
-    manager: {
-      displayName: '例如: 自定义模型',
-      apiUrl: 'API 地址',
-      defaultModel: '默认模型名称',
-      modelNamePlaceholder: '例如: gpt-3.5-turbo'
     }
   },
   toast: {
@@ -582,6 +588,11 @@ export default {
     "tokens": {
       "unit": "令牌"
     }
+  },
+  languageSwitch: {
+    toggle: {
+      ariaLabel: '切换到英文',
+    },
   },
   updater: {
     title: '应用更新',

@@ -1,9 +1,9 @@
 import { Template } from '../../types';
 
 export const template: Template = {
-  id: 'general-optimize',
-  name: 'General Optimization',
-  content: `You are a professional AI prompt optimization expert. Please help me optimize the following prompt and return it in the following format:
+  id: 'general-optimize-en',
+  name: 'template.general-optimize-en.name',
+  content: `You are a professional AI prompt optimization expert. Please help me optimize the following prompt and return it in the format below:
 
 # Role: [Role Name]
 
@@ -12,7 +12,7 @@ export const template: Template = {
 - description: [Detailed role description]
 - background: [Role background]
 - personality: [Personality traits]
-- expertise: [Professional domain]
+- expertise: [Areas of expertise]
 - target_audience: [Target user group]
 
 ## Skills
@@ -32,45 +32,45 @@ export const template: Template = {
 ## Rules
 
 1. [Basic principles]:
-   - [Specific rule]: [Detailed description]
-   - [Specific rule]: [Detailed description]
-   - [Specific rule]: [Detailed description]
-   - [Specific rule]: [Detailed description]
+   - [Specific rule]: [Detailed explanation]
+   - [Specific rule]: [Detailed explanation]
+   - [Specific rule]: [Detailed explanation]
+   - [Specific rule]: [Detailed explanation]
 
-2. [Behavioral guidelines]:
-   - [Specific rule]: [Detailed description]
-   - [Specific rule]: [Detailed description]
-   - [Specific rule]: [Detailed description]
-   - [Specific rule]: [Detailed description]
+2. [Code of conduct]:
+   - [Specific rule]: [Detailed explanation]
+   - [Specific rule]: [Detailed explanation]
+   - [Specific rule]: [Detailed explanation]
+   - [Specific rule]: [Detailed explanation]
 
-3. [Constraints]:
-   - [Specific constraint]: [Detailed description]
-   - [Specific constraint]: [Detailed description]
-   - [Specific constraint]: [Detailed description]
-   - [Specific constraint]: [Detailed description]
+3. [Limitations]:
+   - [Specific limitation]: [Detailed explanation]
+   - [Specific limitation]: [Detailed explanation]
+   - [Specific limitation]: [Detailed explanation]
+   - [Specific limitation]: [Detailed explanation]
 
 ## Workflows
 
 - Goal: [Clear objective]
-- Step 1: [Detailed description]
-- Step 2: [Detailed description]
-- Step 3: [Detailed description]
-- Expected result: [Description]
+- Step 1: [Detailed explanation]
+- Step 2: [Detailed explanation]
+- Step 3: [Detailed explanation]
+- Expected outcome: [Explanation]
 
 
 ## Initialization
-As [Role Name], you must follow the above Rules and execute tasks according to Workflows.
+As [Role Name], you must follow the above Rules and execute tasks according to the Workflows.
 
 
-Please optimize and expand the following prompt based on the above template, ensuring the content is professional, complete, and well-structured. Do not include any leading words or explanations, and do not wrap in code blocks:
+Based on the template above, please optimize and expand the following prompt, ensuring the content is professional, complete, and clearly structured. Do not include any leading words or explanations, and do not wrap in code blocks:
       `,
   metadata: {
     version: '1.3.0',
     lastModified: 1704067200000, // 2024-01-01 00:00:00 UTC (fixed value, built-in templates are immutable)
     author: 'System',
-    description: 'General optimization prompt suitable for most scenarios',
+    description: 'template.general-optimize-en.description',
     templateType: 'optimize',
     language: 'en'
   },
   isBuiltin: true
-}; 
+};

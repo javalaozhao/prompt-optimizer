@@ -18,7 +18,7 @@
                 : 'theme-prompt-version-unselected'
             ]"
           >
-            V{{ version.version }}
+            {{ t('prompt.versionPrefix') }}{{ version.version }}
           </button>
         </div>
       </div>

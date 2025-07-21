@@ -11,8 +11,8 @@
       <!-- Title Slot -->
       <template #title>
         <div class="flex items-center gap-3">
-          <img src="/logo.png" alt="Logo" class="h-8 w-8 rounded-lg">
-          <span class="text-xl font-bold">Prompt Generator</span>
+          <img src="/logo.png" :alt="t('app.logoAlt')" class="h-8 w-8 rounded-lg">
+          <span class="text-xl font-bold">{{ t('app.title') }}</span>
         </div>
       </template>
 
@@ -88,7 +88,7 @@
                 />
               </template>
               <div v-else class="p-2 text-sm theme-placeholder">
-                {{ t('template.loading') || '加载中...' }}
+                {{ t('template.loading') }}
               </div>
             </template>
           </InputPanelUI>
@@ -113,7 +113,7 @@
             />
           </template>
           <div v-else class="p-4 text-center theme-placeholder">
-            {{ t('prompt.loading') || '加载中...' }}
+            {{ t('prompt.loading') }}
           </div>
         </div>
       </ContentCardUI>

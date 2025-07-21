@@ -86,6 +86,7 @@ export default {
     dataManager: 'Data Manager',
   },
   promptOptimizer: {
+    loading: 'Loading prompt...',
     title: 'Prompt Optimizer',
     inputPlaceholder: 'Enter your prompt to optimize...',
     optimize: 'Optimize →',
@@ -360,6 +361,11 @@ export default {
     thinking: 'Thinking Process'
   },
   template: {
+    loading: 'Loading templates...',
+    'general-optimize': {
+      name: 'General Optimization',
+      description: 'General optimization prompt suitable for most scenarios'
+    },
     noDescription: 'No Description',
     configure: 'Configure Template',
     selected: 'Selected',
@@ -412,7 +418,8 @@ export default {
     optimizing: 'Optimizing...',
     continueOptimize: 'Continue Optimize',
     copy: 'Copy',
-    optimizedPlaceholder: 'Optimized prompt will be shown here...',
+    optimizedPlaceholder: 'The optimized prompt will appear here...',
+    versionPrefix: 'V',
     iterateDirection: 'Please enter optimization direction:',
     iteratePlaceholder: 'e.g., Make the prompt more concise, add specific functionality description, etc...',
     confirmOptimize: 'Confirm Optimize',
@@ -583,6 +590,11 @@ export default {
       "unit": "tokens"
     }
   },
+  languageSwitch: {
+    toggle: {
+      ariaLabel: 'Switch to Chinese',
+    },
+  },
   updater: {
     title: 'App Updates',
     checkForUpdates: 'Check for updates',
@@ -619,18 +631,6 @@ export default {
     noUpdatesAvailable: 'You are using the latest version',
     checkNow: 'Check for Updates',
     checking: 'Checking for updates...',
-    checkingForUpdates: 'Checking for updates...',
-    newVersionAvailable: 'New version available',
-    viewDetails: 'View Details',
-    downloadUpdate: 'Download Update',
-    download: 'Download',
-    updateAvailable: 'Update Available',
-    hasUpdate: 'Update Available',
-    details: 'Details',
-    ignore: 'Ignore',
-    ignoreVersion: 'Ignore This Version',
-    downloading: 'Downloading update...',
-    downloadingShort: 'Downloading...',
     downloadComplete: 'Download Complete',
     clickInstallToRestart: 'Click the button below to install and restart the application',
     installAndRestart: 'Install and Restart',
