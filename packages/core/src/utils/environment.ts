@@ -131,3 +131,12 @@ export function isElectronApiReady(): boolean {
 export function waitForElectronApi(_timeout: number = 5000): Promise<boolean> {
   return Promise.resolve(false);
 }
+
+/**
+ * 检测是否在Node.js环境中运行
+ */
+export function isNode(): boolean {
+  return typeof process !== 'undefined' && 
+         process.versions != null && 
+         process.versions.node != null;
+}

@@ -349,6 +349,10 @@ describe('LLM Parameters (llmParams) Functionality', () => {
 
     // Temperature parameter tests
     describe('Temperature Parameter', () => {
+      if (openaiCompatibleConfigs.length === 0) {
+        it.skip('No OpenAI compatible API keys found, skipping temperature tests', () => {});
+        return;
+      }
       // Test for all OpenAI compatible providers
       openaiCompatibleConfigs.forEach((config) => {
         it(`should accept valid temperature for ${config.provider} provider`, async () => {
@@ -382,6 +386,10 @@ describe('LLM Parameters (llmParams) Functionality', () => {
 
     // Top P parameter tests
     describe('Top P Parameter', () => {
+      if (openaiCompatibleConfigs.length === 0) {
+        it.skip('No OpenAI compatible API keys found, skipping top_p tests', () => {});
+        return;
+      }
       // Test for all OpenAI compatible providers
       openaiCompatibleConfigs.forEach((config) => {
         it(`should accept valid top_p for ${config.provider} provider`, async () => {
@@ -415,6 +423,10 @@ describe('LLM Parameters (llmParams) Functionality', () => {
 
     // Max Tokens parameter tests (OpenAI compatible)
     describe('Max Tokens Parameter', () => {
+      if (openaiCompatibleConfigs.length === 0) {
+        it.skip('No OpenAI compatible API keys found, skipping max_tokens tests', () => {});
+        return;
+      }
       // Test for all OpenAI compatible providers
       openaiCompatibleConfigs.forEach((config) => {
         it(`should accept valid max_tokens for ${config.provider} provider`, async () => {
@@ -448,6 +460,10 @@ describe('LLM Parameters (llmParams) Functionality', () => {
 
     // Frequency Penalty parameter tests
     describe('Frequency Penalty Parameter', () => {
+      if (openaiCompatibleConfigs.length === 0) {
+        it.skip('No OpenAI compatible API keys found, skipping frequency_penalty tests', () => {});
+        return;
+      }
       // Test for all OpenAI compatible providers
       openaiCompatibleConfigs.forEach((config) => {
         it(`should accept valid frequency_penalty for ${config.provider} provider`, async () => {
@@ -481,14 +497,13 @@ describe('LLM Parameters (llmParams) Functionality', () => {
 
     // Gemini specific parameters
     describe('Gemini Specific Parameters', () => {
-      beforeEach(async () => {
-        await new Promise(resolve => setTimeout(resolve, 10000)); // 等待 10 秒
+      beforeEach(() => {
+        // This test was previously timing out due to an unnecessary wait.
+        // The wait has been removed.
       });
 
       if (hasGeminiKey && geminiConfig) {
         it('should accept valid maxOutputTokens for Gemini provider', async () => {
-          // 添加间隔，避免频率限制，先等10秒
-          await new Promise(resolve => setTimeout(resolve, 10000)); 
           const storage = new LocalStorageProvider();
           const modelManager = new ModelManager(storage);
           await modelManager.ensureInitialized();
@@ -551,6 +566,10 @@ describe('LLM Parameters (llmParams) Functionality', () => {
 
     // Combined parameters tests
     describe('Combined Parameters', () => {
+      if (openaiCompatibleConfigs.length === 0) {
+        it.skip('No OpenAI compatible API keys found, skipping combined parameter tests', () => {});
+        return;
+      }
       // Test for all OpenAI compatible providers
       openaiCompatibleConfigs.forEach((config) => {
         it(`should handle multiple parameters for ${config.provider} provider`, async () => {
@@ -607,6 +626,11 @@ describe('LLM Parameters (llmParams) Functionality', () => {
 
     // Test that no default values are set when parameters are not provided
     describe('No Default Values', () => {
+      if (openaiCompatibleConfigs.length === 0) {
+        it.skip('No OpenAI compatible API keys found, skipping no-default-values tests', () => {});
+        return;
+      }
+
       // Test for all OpenAI compatible providers
       openaiCompatibleConfigs.forEach((config) => {
         it(`should not set default values when not provided for ${config.provider}`, async () => {

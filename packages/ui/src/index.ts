@@ -37,6 +37,9 @@ export { default as TextDiffUI } from './components/TextDiff.vue'
 export { default as OutputDisplayFullscreen } from './components/OutputDisplayFullscreen.vue'
 export { default as UpdaterIcon } from './components/UpdaterIcon.vue'
 
+// shadcn-vue components
+export { Icon } from 'lucide-vue-next'
+
 // 导出指令
 export { clickOutside } from './directives/clickOutside'
 

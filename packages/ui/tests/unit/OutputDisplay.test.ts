@@ -5,15 +5,57 @@ import { ref } from 'vue'
 import OutputDisplay from '../../src/components/OutputDisplay.vue'
 import type { AppServices } from '../../src/types/services'
 import type { ICompareService } from '@prompt-optimizer/core'
-// 导入真实的翻译文件
-import zhCN from '../../src/i18n/locales/zh-CN'
 
-// 创建 i18n 实例 - 使用真实翻译文件但简化配置
+// 导入实际的翻译文件以确保测试使用正确的键
+import enMessages from '../../src/i18n/locales/en-US'
+
+// 创建一个最小化的 i18n mock
+// 使用实际翻译文件的结构，但添加中文翻译
+const mockMessages = {
+  common: {
+    ...enMessages.common,
+    loading: '加载中...',
+    save: '保存',
+    cancel: '取消',
+    confirm: '确认',
+    delete: '删除',
+    edit: '编辑',
+    create: '创建',
+    search: '搜索',
+    settings: '设置',
+    language: '语言',
+    templates: '模板',
+    history: '历史',
+    render: '渲染',
+    source: '原文',
+    reasoning: '思考过程',
+    generating: '生成中...',
+    generatingReasoning: '思考中...',
+    compare: '比较'
+  },
+  actions: {
+    copy: '复制',
+    fullscreen: '全屏'
+  },
+  nav: {
+    home: '首页',
+    dashboard: '仪表盘',
+    promptOptimizer: '提示词优化器',
+    settings: '设置'
+  },
+  promptOptimizer: { title: '提示词优化器' },
+  settings: { title: '设置' },
+  modelManager: { title: '模型管理' },
+  templateManager: { title: '模板管理' },
+  history: { title: '历史记录' }
+}
+
 const i18n = createI18n({
   legacy: false,
   locale: 'zh-CN',
   messages: {
-    'zh-CN': zhCN  // 使用真实翻译文件
+    'en-US': mockMessages, // 提供 en-US 以满足类型
+    'zh-CN': mockMessages
   }
 })
 

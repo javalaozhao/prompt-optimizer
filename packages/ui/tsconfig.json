@@ -1,12 +1,14 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "tests/**/*.ts"],
+  "include": ["src/**/*", "tests/**/*", "env.d.ts"],
   "compilerOptions": {
     "composite": true,
+    "noEmit": false,
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@prompt-optimizer/core": ["../core/src"]
     }
   }
 } 

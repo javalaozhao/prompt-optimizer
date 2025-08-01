@@ -18,9 +18,8 @@ describe('基础UI组件测试', () => {
         global: {
           plugins: [i18n]  // 直接使用i18n插件
         },
-        props: {
-          text: buttonText,
-          icon: '🔄'
+        slots: {
+          default: buttonText
         }
       })
       expect(wrapper.text()).toContain(buttonText)

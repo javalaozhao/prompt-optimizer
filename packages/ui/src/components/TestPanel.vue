@@ -31,13 +31,13 @@
             <div class="flex-1">
               <div class="h-[20px] mb-1.5"><!-- 占位，与其他元素对齐 --></div>
               <div class="flex items-center gap-2">
-                <button
+                <ActionButtonUI
                   @click="isCompareMode = !isCompareMode"
+                  :variant="isCompareMode ? 'default' : 'secondary'"
                   class="h-10 text-sm whitespace-nowrap"
-                  :class="isCompareMode ? 'theme-button-primary' : 'theme-button-secondary'"
                 >
                   {{ isCompareMode ? t('test.toggleCompare.disable') : t('test.toggleCompare.enable') }}
-                </button>
+                </ActionButtonUI>
               </div>
             </div>
           </template>
@@ -46,7 +46,7 @@
         <!-- For user prompt optimization, show simplified test controls -->
         <div v-else class="space-y-4">
           <div class="flex items-center justify-between">
-            <h3 class="text-lg font-medium theme-text">{{ t('test.userPromptTest') }}</h3>
+            <h3 class="text-lg font-medium">{{ t('test.userPromptTest') }}</h3>
             <div class="flex items-center gap-2">
               <ModelSelectUI
                 ref="testModelSelect"
@@ -56,20 +56,21 @@
                 @config="$emit('showConfig')"
                 class="w-48"
               />
-              <button
+              <ActionButtonUI
                 @click="isCompareMode = !isCompareMode"
+                :variant="isCompareMode ? 'default' : 'secondary'"
                 class="h-10 text-sm whitespace-nowrap"
-                :class="isCompareMode ? 'theme-button-primary' : 'theme-button-secondary'"
               >
                 {{ isCompareMode ? t('test.toggleCompare.disable') : t('test.toggleCompare.enable') }}
-              </button>
-              <button
+              </ActionButtonUI>
+              <ActionButtonUI
                 @click="handleTest"
                 :disabled="isTesting || !selectedTestModel"
-                class="h-10 px-4 text-sm font-medium theme-button-primary"
+                :loading="isTesting"
+                class="h-10 px-4 text-sm font-medium"
               >
                 {{ isTesting ? t('test.testing') : (isCompareMode ? t('test.startCompare') : t('test.startTest')) }}
-              </button>
+              </ActionButtonUI>
             </div>
           </div>
         </div>
@@ -88,7 +89,7 @@
               pointerEvents: isCompareMode ? 'auto' : 'none'
             }"
           >
-            <h3 class="text-lg font-semibold theme-text truncate mb-3 flex-none">{{ t('test.originalResult') }}</h3>
+            <h3 class="text-lg font-semibold truncate mb-3 flex-none">{{ t('test.originalResult') }}</h3>
             <OutputDisplay
               :content="originalTestResult"
               :reasoning="originalTestReasoning"
@@ -110,7 +111,7 @@
               'md:absolute md:inset-0 md:h-full md:w-full md:left-0': !isCompareMode
             }"
           >
-            <h3 class="text-lg font-semibold theme-text truncate mb-3 flex-none">
+            <h3 class="text-lg font-semibold truncate mb-3 flex-none">
               {{ isCompareMode ? t('test.optimizedResult') : t('test.testResult') }}
             </h3>
             <OutputDisplay
@@ -128,7 +129,7 @@
   </ContentCardUI>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useToast } from '../composables/useToast'
@@ -136,6 +137,7 @@ import ContentCardUI from './ContentCard.vue'
 import InputPanelUI from './InputPanel.vue'
 import ModelSelectUI from './ModelSelect.vue'
 import OutputDisplay from './OutputDisplay.vue'
+import ActionButtonUI from './ActionButton.vue'
 
 const { t } = useI18n()
 const toast = useToast()
@@ -175,7 +177,7 @@ watch(() => props.modelValue, (newVal) => {
   }
 })
 
-const updateSelectedModel = (value) => {
+const updateSelectedModel = (value: string) => {
   selectedTestModel.value = value
   emit('update:modelValue', value)
 }
@@ -197,7 +199,7 @@ const optimizedTestReasoning = ref('')
 const isTesting = computed(() => isTestingOriginal.value || isTestingOptimized.value)
 const testContent = ref('')
 
-const ensureString = (value) => {
+const ensureString = (value: unknown): string => {
   if (typeof value === 'string') return value
   if (value === null || value === undefined) return ''
   return String(value)
@@ -215,14 +217,14 @@ const testOriginalPrompt = async () => {
 
   try {
     const streamHandler = {
-      onToken: (token) => {
+      onToken: (token: string) => {
         originalTestResult.value += token
       },
-      onReasoningToken: (reasoningToken) => {
+      onReasoningToken: (reasoningToken: string) => {
         originalTestReasoning.value += reasoningToken
       },
       onComplete: () => { /* 流结束后不再需要设置 isTesting, 由 finally 处理 */ },
-      onError: (err) => {
+      onError: (err: Error) => {
         const errorMessage = err.message || t('test.error.failed')
         originalTestError.value = errorMessage
         toast.error(errorMessage)
@@ -240,15 +242,17 @@ const testOriginalPrompt = async () => {
       userPrompt = testContent.value
     }
 
+    if (!props.promptService) return
+
     await props.promptService.testPromptStream(
       systemPrompt,
       userPrompt,
       selectedTestModel.value,
       streamHandler
     )
-  } catch (error) {
+  } catch (error: any) {
     console.error('[TestPanel] Original prompt test failed:', error); // 增加详细错误日志
-    const errorMessage = error.message || t('test.error.failed')
+    const errorMessage = (error as Error).message || t('test.error.failed')
     originalTestError.value = errorMessage
     toast.error(errorMessage)
     originalTestResult.value = ''
@@ -270,14 +274,14 @@ const testOptimizedPrompt = async () => {
 
   try {
     const streamHandler = {
-      onToken: (token) => {
+      onToken: (token: string) => {
         optimizedTestResult.value += token
       },
-      onReasoningToken: (reasoningToken) => {
+      onReasoningToken: (reasoningToken: string) => {
         optimizedTestReasoning.value += reasoningToken
       },
       onComplete: () => { /* 流结束后不再需要设置 isTesting, 由 finally 处理 */ },
-      onError: (err) => {
+      onError: (err: Error) => {
         const errorMessage = err.message || t('test.error.failed')
         optimizedTestError.value = errorMessage
         toast.error(errorMessage)
@@ -295,15 +299,17 @@ const testOptimizedPrompt = async () => {
       userPrompt = testContent.value
     }
 
+    if (!props.promptService) return
+
     await props.promptService.testPromptStream(
       systemPrompt,
       userPrompt,
       selectedTestModel.value,
       streamHandler
     )
-  } catch (error) {
+  } catch (error: any) {
     console.error('[TestPanel] Optimized prompt test failed:', error); // 增加详细错误日志
-    const errorMessage = error.message || t('test.error.failed')
+    const errorMessage = (error as Error).message || t('test.error.failed')
     optimizedTestError.value = errorMessage
     toast.error(errorMessage)
     optimizedTestResult.value = ''
@@ -330,20 +336,20 @@ const handleTest = async () => {
     // Compare test mode: test both original and optimized prompts
     try {
       await Promise.all([
-        testOriginalPrompt().catch(error => {
+        testOriginalPrompt().catch((error: Error) => {
           console.error('[TestPanel] Original prompt test failed:', error)
-          const errorMessage = error.message || t('test.error.failed')
+          const errorMessage = (error as Error).message || t('test.error.failed')
           originalTestError.value = errorMessage
           toast.error(errorMessage)
         }),
-        testOptimizedPrompt().catch(error => {
+        testOptimizedPrompt().catch((error: Error) => {
           console.error('[TestPanel] Optimized prompt test failed:', error)
-          const errorMessage = error.message || t('test.error.failed')
+          const errorMessage = (error as Error).message || t('test.error.failed')
           optimizedTestError.value = errorMessage
           toast.error(errorMessage)
         })
       ])
-    } catch (error) {
+    } catch (error: any) {
       console.error('[TestPanel] Test process error:', error)
     }
   } else {

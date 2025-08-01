@@ -23,6 +23,15 @@ vi.mock('next-intl', () => ({
   useLocale: vi.fn(() => 'en'),
 }));
 
+// Mock the centralized locales configuration
+vi.mock('@/config/locales', () => ({
+  locales: [
+    { code: 'en', name: 'English' },
+    { code: 'zh', name: '中文' },
+  ],
+  localeCodes: ['en', 'zh'],
+}));
+
 describe('LanguageSwitcher', () => {
   beforeEach(() => {
     vi.clearAllMocks();

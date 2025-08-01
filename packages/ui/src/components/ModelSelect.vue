@@ -1,70 +1,45 @@
 <template>
   <div class="relative">
-    <button
-      @click.stop="toggleDropdown"
-      class="theme-template-select-button"
-      :disabled="disabled"
-    >
-      <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-2">
-          <span v-if="modelValue && getSelectedModel && getSelectedModel.enabled" class="theme-text text-sm">
-            {{ getSelectedModel.name }}
-          </span>
-          <span v-else class="theme-placeholder">
-            {{ !enabledModels.length ? t('model.select.noModels') : t('model.select.placeholder') }}
-          </span>
+    <Select :model-value="modelValue" @update:model-value="selectModel" :disabled="disabled">
+      <SelectTrigger>
+        <SelectValue :placeholder="t('model.select.placeholder')" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel v-if="!enabledModels.length">{{ t('model.select.noAvailableModels') }}</SelectLabel>
+          <SelectItem v-for="model in enabledModels" :key="model.key" :value="model.key">
+            {{ model.name }}
+          </SelectItem>
+        </SelectGroup>
+        <SelectSeparator />
+        <div class="p-1">
+          <Button variant="ghost" class="w-full justify-start" @click="$emit('config')">
+            <Settings class="mr-2 h-4 w-4" />
+            {{ t('model.select.configure') }}
+          </Button>
         </div>
-        <span class="theme-text text-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </span>
-      </div>
-    </button>
-
-    <div v-if="isOpen" 
-         class="theme-dropdown"
-         :style="dropdownStyle"
-         @click.stop
-         v-click-outside="() => isOpen = false"
-    >
-      <div class="p-2 max-h-64 overflow-y-auto">
-        <div v-if="!enabledModels.length" class="theme-dropdown-empty">
-          {{ t('model.select.noAvailableModels') }}
-        </div>
-        <div v-else v-for="model in enabledModels" 
-             :key="model.key"
-             @click="selectModel(model)"
-             class="theme-dropdown-item"
-             :class="[
-               modelValue === model.key
-                 ? 'theme-dropdown-item-active'
-                 : 'theme-dropdown-item-inactive'
-             ]"
-        >
-          <div class="flex items-center justify-between">
-            <span class="theme-text text-sm">{{ model.name }}</span>
-          </div>
-        </div>
-      </div>
-      <div class="theme-dropdown-section">
-        <button
-          @click="$emit('config')"
-          class="theme-dropdown-config-button"
-        >
-          <span>⚙️</span>
-          <span>{{ t('model.select.configure') }}</span>
-        </button>
-      </div>
-    </div>
+      </SelectContent>
+    </Select>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, inject, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { clickOutside } from '../directives/clickOutside'
+import { Settings } from 'lucide-vue-next'
+import { Button } from '@/components/ui/button'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import type { AppServices } from '../types/services'
+import type { ModelConfig } from '@prompt-optimizer/core'
 
 const { t } = useI18n()
 
@@ -82,9 +57,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'config'])
 
-const isOpen = ref(false)
 const refreshTrigger = ref(0)
-const vClickOutside = clickOutside
 
 // 统一使用inject获取services
 const services = inject<Ref<AppServices | null>>('services')
@@ -107,8 +80,12 @@ const getModelManager = computed(() => {
 })
 
 // 响应式数据存储
-const allModels = ref([])
-const enabledModels = ref([])
+
+// 定义模型类型，因为它在ModelManager中是内部的
+type Model = ModelConfig & { key: string };
+
+const allModels = ref<Model[]>([])
+const enabledModels = ref<Model[]>([])
 
 // 加载模型数据
 const loadModels = async () => {
@@ -133,27 +110,16 @@ const getSelectedModel = computed(() => {
   return allModels.value.find(m => m.key === props.modelValue)
 })
 
-// 判断是否为默认模型
-const isDefaultModel = (key) => {
-  const model = allModels.value.find(m => m.key === key)
-  return model?.isDefault ?? false
-}
 
-// 切换下拉框
-const toggleDropdown = async () => {
-  if (props.disabled) return
-  isOpen.value = !isOpen.value
-  if (isOpen.value) {
-    await loadModels()
-    refreshTrigger.value++
-  }
-}
+
+
 
 // 选择模型
-const selectModel = (model) => {
-  emit('update:modelValue', model.key)
-  isOpen.value = false
-  refreshTrigger.value++
+const selectModel = (modelKey: any) => {
+  if (typeof modelKey === 'string' && modelKey) {
+    emit('update:modelValue', modelKey)
+    refreshTrigger.value++
+  }
 }
 
 // 添加刷新方法
@@ -185,14 +151,7 @@ onMounted(async () => {
   await loadModels()
 })
 
-// 计算下拉框样式
-const dropdownStyle = computed(() => ({
-  minWidth: '100%'
-}))
+
 </script>
 
-<style scoped>
-.theme-template-select-button {
-  position: relative;
-}
-</style> 
+ 

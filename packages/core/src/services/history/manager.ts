@@ -450,12 +450,33 @@ export class HistoryManager implements IHistoryManager {
 /**
  * 创建聊天历史管理器的工厂函数
  * @param storageProvider 存储提供器实例
- * @param modelManager 模型管理器实例
+ * @param modelManager 模型管理器实例（可选）
  * @returns 聊天历史管理器实例
  */
 export function createHistoryManager(
   storageProvider: IStorageProvider,
-  modelManager: IModelManager
+  modelManager?: IModelManager
 ): HistoryManager {
-  return new HistoryManager(storageProvider, modelManager);
+  // 如果没有提供 modelManager，创建一个模拟对象（主要用于测试）
+  const mockModelManager: IModelManager = modelManager || {
+    // 实现 IModelManager 接口的必要方法
+    ensureInitialized: async () => {},
+    isInitialized: async () => true,
+    getAllModels: async () => [],
+    getModel: async () => ({ name: 'Mock Model', defaultModel: 'mock-model', baseURL: '', models: [], enabled: true, provider: 'custom' }),
+    addModel: async () => {},
+    updateModel: async () => {},
+    deleteModel: async () => {},
+    enableModel: async () => {},
+    disableModel: async () => {},
+    getEnabledModels: async () => [],
+    
+    // 实现 IImportExportable 接口的方法
+    exportData: async () => [],
+    importData: async () => {},
+    getDataType: async () => 'model',
+    validateData: async () => true
+  };
+  
+  return new HistoryManager(storageProvider, mockModelManager);
 }

@@ -2,6 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import InputPanel from './InputPanel';
+import PromptPanel from './PromptPanel';
+import TestPanel from './TestPanel';
 
 /**
  * Prompt Optimizer Client Component
@@ -15,20 +17,15 @@ export default function PromptOptimizerClient() {
     // State and logic will be added here incrementally.
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 flex flex-col gap-6">
-                {/* This is where the InputPanel and PromptPanel will go */}
-                <InputPanel />
-                <div className="p-4 border rounded-lg bg-card text-card-foreground">
-                    <h2 className="font-semibold">{t('resultsPanel.title')}</h2>
-                    <p className="text-sm text-muted-foreground">{t('resultsPanel.placeholder')}</p>
+        <div className="container mx-auto py-8 px-4">
+            <h1 className="text-3xl font-bold text-primary mb-8">{t('title')}</h1>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 flex flex-col gap-6">
+                    <InputPanel />
+                    <PromptPanel />
                 </div>
-            </div>
-            <div className="lg:col-span-1">
-                {/* This is where the TestPanel will go */}
-                <div className="p-4 border rounded-lg bg-card text-card-foreground">
-                    <h2 className="font-semibold">{t('testPanel.title')}</h2>
-                    <p className="text-sm text-muted-foreground">{t('testPanel.placeholder')}</p>
+                <div className="lg:col-span-1">
+                    <TestPanel />
                 </div>
             </div>
         </div>

@@ -1,15 +1,24 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
 import path from 'path'
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    dts({
+      insertTypesEntry: true,
+      staticImport: true,
+      skipDiagnostics: false,
+      logLevel: 'info'
+    })
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@ui': path.resolve(__dirname, '../ui')
+      '@prompt-optimizer/core': path.resolve(__dirname, '../core/src')
     }
   },
   build: {

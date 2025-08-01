@@ -594,6 +594,11 @@ export default {
       ariaLabel: '切换到英文',
     },
   },
+  prompt: {
+    optimized: '优化后的提示词',
+    optimizedPlaceholder: '优化后的提示词将显示在这里...',
+    versionPrefix: 'V'
+  },
   updater: {
     title: '应用更新',
     checkForUpdates: '检查更新',

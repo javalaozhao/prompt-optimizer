@@ -11,13 +11,13 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from './ui/dropdown-menu';
+import { locales, localeCodes } from '@/config/locales';
 
 /**
  * LanguageSwitcher Component
  * 
  * Renders a dropdown menu to switch the application's locale.
- * It uses `next-intl` and Next.js navigation hooks to change the language
- * while preserving the current page path.
+ * It uses a centralized configuration for locales, making it easily extensible.
  */
 export default function LanguageSwitcher() {
     const [isPending, startTransition] = useTransition();
@@ -25,7 +25,6 @@ export default function LanguageSwitcher() {
     const pathname = usePathname();
     const locale = useLocale();
 
-    // Store the current locale in localStorage when it changes
     useEffect(() => {
         if (typeof window !== 'undefined') {
             localStorage.setItem('preferredLanguage', locale);
@@ -33,17 +32,13 @@ export default function LanguageSwitcher() {
     }, [locale]);
 
     const onSelectChange = (nextLocale: string) => {
-        // The `startTransition` hook is used to prevent the UI from blocking
-        // during the navigation to the new locale's path.
         startTransition(() => {
-            // Save the selected locale to localStorage for persistence
             if (typeof window !== 'undefined') {
                 localStorage.setItem('preferredLanguage', nextLocale);
             }
             
             const pathParts = pathname.split('/');
-            // Remove the current locale if it exists in the path
-            if (['en', 'zh'].includes(pathParts[1])) {
+            if (localeCodes.includes(pathParts[1])) {
                 pathParts.splice(1, 1);
             }
             const newPath = `/${nextLocale}${pathParts.join('/') || '/'}`;
@@ -59,12 +54,11 @@ export default function LanguageSwitcher() {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => onSelectChange('en')}>
-                    English
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => onSelectChange('zh')}>
-                    中文
-                </DropdownMenuItem>
+                {locales.map((l) => (
+                    <DropdownMenuItem key={l.code} onClick={() => onSelectChange(l.code)}>
+                        {l.name}
+                    </DropdownMenuItem>
+                ))}
             </DropdownMenuContent>
         </DropdownMenu>
     );
